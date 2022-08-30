@@ -7,9 +7,18 @@
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/ecpick?label=pypi%20downloads)](https://pypi.org/project/ecpick/)
 [![PyPI - License](https://img.shields.io/pypi/l/ecpick)](https://pypi.org/project/ecpick/)
 
-Enzyme Commission Predict Interpretable CK?? can
+Enzyme Commission Predict
 
-- **Website**: https://ecpick.dataxlab.org
+Identifying of an enzyme function plays a critical role in several applications,
+such as enzyme-deficient disease diagnosis and energy generation from biomass.
+Enzyme Commission (EC) numbers of four digits (e.g., 1.1.1.1) indicate enzyme’s functionality
+and metabolisms based on catalytic chemical reaction.
+Predicting enzyme’s function using automatic computational models from genome sequence has been prevalent,
+due to cost and time-consuming biological experiments. In this project,
+we aim to develop an effective and efficient machine learning model that predicts four-digit EC numbers
+to determine functions of an enzyme.
+
+- **Website**: http://ecpick.dataxlab.org
 - **Documentation**: https://readthedocs.org/projects/ecpick
 - **Source code**: https://github.com/datax-lab/ECPICK
 
@@ -50,7 +59,7 @@ ecpick.predict_fasta(fasta_path='sample.fasta', output_path='output')
 
 ## Links:
 
-- ECPICK Web server: https://ecpick.dataxlab.org
+- ECPICK Web server: http://ecpick.dataxlab.org
 
 ## References
 Sora Han, Mingyu Park, ECPICK (2022). <a href="#">link</a>
