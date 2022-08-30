@@ -27,7 +27,7 @@ class ECPICK:
     --------
     >>> from ecpick import ECPICK
     >>> ecpick = ECPICK(dropout_rate=0.8, beta=0.6, num_of_neural=384, cuda='0')
-    >>> ecpick.predict_fasta(fasta_path='sample.fasta')
+    >>> ecpick.predict_fasta(fasta_path='sample.fasta', output_path='output')
     """
 
     def __init__(self, dropout_rate=0.8, beta=0.6, num_of_neural=384, cuda='cpu'):
@@ -128,7 +128,7 @@ class ECPICK:
             self.__models.append(model)
         # endregion
 
-    def predict_fasta(self, fasta_path):
+    def predict_fasta(self, fasta_path, output_path):
 
         # region [ Load Sequence ]
         Logger.info("#### Load Sequence ####")
@@ -201,9 +201,22 @@ class ECPICK:
                     y_prob.append(result_prob[i].tolist())
                     y_pred.append(pred)
                     y_pred_prob.append(pred_prob)
+
+        Logger.info(f"> Elapsed Time: {stop_watch.stop()}ms")
+        Logger.info(f"#### Finish Predict Process ####")
         # endregion
 
         # region [ Show Result ]
-        for i, idx in enumerate(y_id):
-            Logger.info(f"Result: ID={idx}, EC={y_pred[i]}, Prob={y_pred_prob[i]}")
+        os.makedirs(output_path, exist_ok=True)
+        file_path = os.path.join(output_path, 'result.csv')
+
+        if os.path.exists(file_path):
+            Logger.warn('Result File exists. Overwrite')
+
+        with open(file_path, 'w+') as f:
+            f.write("Seq ID, EC, Prob\n")
+            for i, idx in enumerate(y_id):
+                Logger.info(f"Result: ID={idx}, EC={y_pred[i]}, Prob={y_pred_prob[i]}")
+                for j in range(len(y_pred[i])):
+                    f.write(f"{idx},{y_pred[i][j]},{y_pred_prob[i][j]}\n")
         # endregion
