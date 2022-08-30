@@ -1,7 +1,7 @@
-import os
 import argparse
-
+import os
 from datetime import datetime
+
 from ecpick import ECPICK
 from ecpick.util import Logger
 
@@ -40,6 +40,7 @@ if __name__ == '__main__':
     parser.add_argument('--num-of-neural', '-n', type=int, default=num_of_neural)
     parser.add_argument('--cuda', '-c', type=int, default=cuda)
     parser.add_argument('--fasta-file', '-f', type=str, required=True)
+    parser.add_argument('--output-path', '-o', type=str, required=True)
 
     args = parser.parse_args()
 
@@ -48,6 +49,7 @@ if __name__ == '__main__':
     num_of_neural = args.num_of_neural
     cuda = args.cuda
     fasta_file = args.fasta_file
+    output_path = args.output_path
     # endregion
 
     Logger.info("#### Hyper Parameters ####")
@@ -60,4 +62,4 @@ if __name__ == '__main__':
     # endregion
 
     ecpick = ECPICK(dropout_rate, beta, num_of_neural, cuda)
-    ecpick.predict_fasta(fasta_path=fasta_file)
+    ecpick.predict_fasta(fasta_path=fasta_file, output_path=output_path)
