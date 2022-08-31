@@ -7,9 +7,9 @@ class Logger:
     CONSOLE = True
 
     @classmethod
-    def init(cls, path):
+    def init(cls, path, console):
         cls.FILE = open(path, 'w+')
-        cls.CONSOLE = True
+        cls.CONSOLE = console
 
     @classmethod
     def log(cls, msg, level):

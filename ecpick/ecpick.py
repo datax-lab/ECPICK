@@ -1,3 +1,4 @@
+import json
 import os
 import pickle
 import zipfile
@@ -128,7 +129,7 @@ class ECPICK:
             self.__models.append(model)
         # endregion
 
-    def predict_fasta(self, fasta_path, output_path):
+    def predict_fasta(self, fasta_path, output_path, output_format='csv'):
 
         # region [ Load Sequence ]
         Logger.info("#### Load Sequence ####")
@@ -156,7 +157,7 @@ class ECPICK:
         Logger.info(f"> Number of Sequence: {x_value.shape}")
         # endregion
 
-        # region [ Predict ]
+        # region [ Predict Sequence ]
         Logger.info(f"#### Start Predict Process ####")
 
         stop_watch = StopWatch()
@@ -208,15 +209,43 @@ class ECPICK:
 
         # region [ Show Result ]
         os.makedirs(output_path, exist_ok=True)
-        file_path = os.path.join(output_path, 'result.csv')
+        if output_format == 'json':
+            file_path = os.path.join(output_path, 'result.json')
+        else:
+            file_path = os.path.join(output_path, 'result.csv')
 
         if os.path.exists(file_path):
             Logger.warn('Result File exists. Overwrite')
 
         with open(file_path, 'w+') as f:
-            f.write("Seq ID, EC, Prob\n")
+
+            if output_format == 'csv':
+                f.write("Seq ID, EC, Prob\n")
+            elif output_format == 'json':
+                results = []
+
             for i, idx in enumerate(y_id):
                 Logger.info(f"Result: ID={idx}, EC={y_pred[i]}, Prob={y_pred_prob[i]}")
+                if output_format == 'json':
+                    result = {
+                        'id': idx,
+                        'predict': []
+                    }
+
                 for j in range(len(y_pred[i])):
-                    f.write(f"{idx},{y_pred[i][j]},{y_pred_prob[i][j]}\n")
+                    if output_format == 'csv':
+                        f.write(f"{idx},{y_pred[i][j]},{y_pred_prob[i][j]}\n")
+                        print(f"{idx},{y_pred[i][j]},{y_pred_prob[i][j]}")
+                    elif output_format == 'json':
+                        result['predict'].append({
+                            "ec": y_pred[i][j],
+                            "prob": y_pred_prob[i][j]
+                        })
+
+                if output_format == 'json':
+                    results.append(result)
+
+            if output_format == 'json':
+                f.write(json.dumps(results))
+                print(json.dumps(results))
         # endregion
