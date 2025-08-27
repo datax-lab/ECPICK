@@ -32,6 +32,7 @@ the newest pretrained ECPICK models.
 
 
 - **Website**: http://enzymex.dataxlab.org
+- **ECPICK Models**: http://enzymex.egr.unlv.edu/models_datasets
 - **Documentation**: https://readthedocs.org/projects/ecpick
 - **Source code**: https://github.com/datax-lab/ECPICK
 
@@ -70,9 +71,6 @@ ecpick.predict_fasta(fasta_path='sample.fasta', output_path='output')
 ```
 
 ## Usage
-
-## Links:
-- http://enzymex.dataxlab.org
   
 ## References
 
