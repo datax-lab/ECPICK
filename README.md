@@ -26,8 +26,9 @@ prediction or potential motif sites. Our intensive assessment showed not only ou
 enhancement of predictive performance on the largest databases of Uniprot, PDB, and KEGG,
 but also a capability to discover new motif sites in microorganisms. ECPICK will be a
 reliable EC number prediction tool to identify protein functions of an increasing number
-of uncharacterized enzymes. We also provide EnzymeX, a web-based portal for comprehensive 
-protein sequence data analysis using advanced deep learning tools.
+of uncharacterized enzymes. We also provide EnzymeX — a web-based portal that offers 
+comprehensive protein sequence data analysis using advanced deep learning tools and includes 
+the newest pretrained ECPICK models.
 
 
 - **Website**: http://enzymex.dataxlab.org
