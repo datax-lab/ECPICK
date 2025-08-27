@@ -26,9 +26,13 @@ prediction or potential motif sites. Our intensive assessment showed not only ou
 enhancement of predictive performance on the largest databases of Uniprot, PDB, and KEGG,
 but also a capability to discover new motif sites in microorganisms. ECPICK will be a
 reliable EC number prediction tool to identify protein functions of an increasing number
-of uncharacterized enzymes.
+of uncharacterized enzymes. We also provide EnzymeX, a comprehensive platform that offers 
+(1) trustworthy deep learning tools that predict enzyme commission (EC) numbers, 
+including ECPICK (Han et al., 2024) and HIT-EC (Dumontet et al., 2025), 
+(2) databases for protein sequence analysis tool development, and (3) an EC number browser 
+for convenient exploration of enzyme classification.
 
-- **Website**: http://ecpick.dataxlab.org
+- **Website**: http://enzymex.dataxlab.org
 - **Documentation**: https://readthedocs.org/projects/ecpick
 - **Source code**: https://github.com/datax-lab/ECPICK
 
@@ -69,9 +73,8 @@ ecpick.predict_fasta(fasta_path='sample.fasta', output_path='output')
 ## Usage
 
 ## Links:
-
-- ECPICK Web server: http://ecpick.dataxlab.org
-
+- http://enzymex.dataxlab.org
+  
 ## References
 
 Not available yet.
